@@ -89,3 +89,7 @@ The owner reviewed the first artwork rollout and approved a second image-directi
 - Added Blessing C as a website project; website thumbnail capture is attempted through thum.io and a local editorial SVG is used as fallback. Direct screenshot could not be verified by the browser environment.
 - Changed the Stallbasket detail view to use its matching curated promotional cover. Adjusted Browndilux popup image alignment to favour the laptop area.
 - Apex Wright Lab's replacement uploaded image is pending an actual binary asset upload, not merely a path reference.
+
+### Apex Wright Lab selected-cover follow-up
+
+The owner-approved light editorial artwork was compressed as a locally served WebP for the featured Apex Wright Lab tile and corresponding detail modal. It is promotional visual artwork, not a verified screenshot of the live site. Source image remains available in the conversation artifacts. File: `assets/covers/apex-wright-lab-approved.webp`.
