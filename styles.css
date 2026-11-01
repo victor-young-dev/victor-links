@@ -199,3 +199,45 @@
   .post-card.motion-pending{opacity:1;transform:none;animation:none}
   .post-card.motion-enter{animation:none!important}
 }
+
+
+/* Batch 2.1 — profile stat alignment and readable numerals. */
+.profile-facts{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  align-items:start;
+  gap:12px;
+}
+.profile-facts>div{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  gap:6px;
+  text-align:center;
+}
+.profile-facts strong{
+  display:block;
+  font-family:var(--font-body);
+  font-size:clamp(20px,2.3vw,25px);
+  font-weight:800;
+  font-variant-numeric:tabular-nums lining-nums;
+  line-height:1.12;
+  letter-spacing:-.6px;
+}
+.profile-facts span{
+  display:block;
+  max-width:100%;
+  font-family:var(--font-body);
+  font-size:clamp(10px,1.2vw,12px);
+  line-height:1.35;
+  font-weight:500;
+  text-align:center;
+  color:var(--secondary);
+}
+@media(max-width:650px){
+  .profile-facts{gap:5px;margin-top:13px}
+  .profile-facts strong{font-size:18px;line-height:1.15;letter-spacing:-.35px}
+  .profile-facts span{font-size:10px;line-height:1.3}
+}
