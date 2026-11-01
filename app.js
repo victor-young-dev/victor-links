@@ -48,10 +48,51 @@
  const $=s=>document.querySelector(s); const create=(tag,cls,text)=>{const x=document.createElement(tag);if(cls)x.className=cls;if(text!==undefined)x.textContent=text;return x};
  const safe=url=>{try{const u=new URL(url);return ['https:','mailto:'].includes(u.protocol)?u.href:null}catch{return null}};
  let currentTab='all',term='',shown=12, lastFocus=null;
- function renderHighlights(){let root=$('#highlights');root.replaceChildren();highlights.forEach(item=>{let a=create('a','story-link');a.href=item.url;a.target='_blank';a.rel='noopener noreferrer';a.title='Open '+item.title;let ring=create('span','story-ring'),inside=create('span','story-inner'),symbol=create('span','story-icon '+item.style);symbol.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true">'+icons[item.symbol]+'</svg>';inside.append(symbol);ring.append(inside);a.append(ring,create('span','story-label',item.title));root.append(a)})}
+ function renderHighlights(){
+  const root=$('#highlights');root.replaceChildren();
+  const primary=create('div','highlight-set');
+  const visualCopy=create('div','highlight-set');
+  visualCopy.setAttribute('aria-hidden','true');
+  highlights.forEach(item=>{
+    const a=create('a','story-link');
+    a.href=item.url;a.target='_blank';a.rel='noopener noreferrer';a.title='Open '+item.title;
+    const ring=create('span','story-ring'),inside=create('span','story-inner'),symbol=create('span','story-icon '+item.style);
+    symbol.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true">'+icons[item.symbol]+'</svg>';
+    inside.append(symbol);ring.append(inside);a.append(ring,create('span','story-label',item.title));
+    primary.append(a);
+    const copy=a.cloneNode(true);
+    copy.tabIndex=-1;
+    copy.setAttribute('aria-hidden','true');
+    visualCopy.append(copy);
+  });
+  root.append(primary,visualCopy);
+}
  function makeCard(p,i){const b=create('button','post-card');b.type='button';b.setAttribute('aria-label','View '+p.name+' project details');b.style.animationDelay=Math.min(i,12)*26+'ms';const fallback=create('span','post-fallback');fallback.append(create('span','fallback-top',p.type.toUpperCase()),create('strong','',p.name),create('span','fallback-line'));const art=create('span','fallback-art art-'+p.category);art.setAttribute('aria-hidden','true');const ring=create('span','art-ring'),ray=create('span','art-ray'),tile=create('span','art-tile');art.append(ring,ray,tile);fallback.append(art);b.append(fallback);if(p.image){const img=create('img','post-image');img.alt='';img.loading=i<3?'eager':'lazy';img.decoding='async';img.referrerPolicy='no-referrer';img.src=p.image;img.onload=()=>{b.classList.add('has-image')};img.onerror=()=>{img.remove()};b.append(img)}b.append(create('span','post-scrim'));let text=create('span','post-content');text.append(create('span','post-name',p.name),create('span','post-type',p.status));b.append(text);if(p.pinned)b.append(create('span','post-pin','PINNED'));b.addEventListener('click',()=>openModal(p));return b}
+
+ let cardObserver=null;
+ function observeVisibleCards(){
+  if(cardObserver){cardObserver.disconnect();cardObserver=null;}
+  const reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduced||!('IntersectionObserver' in window))return;
+  const cards=[...document.querySelectorAll('#workGrid .post-card')];
+  if(!cards.length)return;
+  cardObserver=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(!entry.isIntersecting)return;
+      const node=entry.target;
+      node.classList.remove('motion-pending');
+      node.classList.add('motion-enter');
+      cardObserver?.unobserve(node);
+    });
+  },{threshold:.08,rootMargin:'0px 0px -18px 0px'});
+  cards.forEach((card,index)=>{
+    card.classList.add('motion-pending');
+    card.style.setProperty('--reveal-delay',String(Math.min(index%6,5)*55)+'ms');
+    cardObserver.observe(card);
+  });
+ }
  function visibleProjects(){let base=[...projects].sort((a,b)=>Number(Boolean(b.pinned))-Number(Boolean(a.pinned)));if(currentTab==='products')base=base.filter(p=>p.category==='products');if(currentTab==='brands')base=base.filter(p=>p.category==='brands');return base.filter(p=>[p.name,p.type,p.status,p.desc].join(' ').toLowerCase().includes(term.toLowerCase()))}
- function renderGrid(){const connect=currentTab==='connect';$('#tabPanel').hidden=connect;$('#connectPanel').hidden=!connect;if(connect)return;const selected=visibleProjects(),items=selected.slice(0,shown),root=$('#workGrid');root.replaceChildren(...items.map(makeCard));$('#feedLabel').textContent=currentTab==='all'?'Selected works':currentTab==='products'?'Products & experiments':'Brands & websites';$('#feedCount').textContent=selected.length+' links';$('#emptyState').hidden=!!selected.length;const more=$('#loadMore');more.hidden=selected.length<=shown;more.textContent='View '+(selected.length-shown)+' more projects ↓';}
+ function renderGrid(){const connect=currentTab==='connect';$('#tabPanel').hidden=connect;$('#connectPanel').hidden=!connect;if(connect)return;const selected=visibleProjects(),items=selected.slice(0,shown),root=$('#workGrid');root.replaceChildren(...items.map(makeCard));$('#feedLabel').textContent=currentTab==='all'?'Selected works':currentTab==='products'?'Products & experiments':'Brands & websites';$('#feedCount').textContent=selected.length+' links';$('#emptyState').hidden=!!selected.length;const more=$('#loadMore');more.hidden=selected.length<=shown;more.textContent='View '+(selected.length-shown)+' more projects ↓';observeVisibleCards();}
  function switchTab(value,focus=false){currentTab=value;shown=12;document.querySelectorAll('.tab').forEach(b=>{const active=b.dataset.tab===value;b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));b.tabIndex=active?0:-1});$('#tabPanel').setAttribute('aria-labelledby','tab-'+value);$('#searchRegion').hidden=true;$('#searchToggle').hidden=value==='connect';$('#searchToggle').setAttribute('aria-expanded','false');$('#searchInput').value='';term='';renderGrid();if(focus)document.getElementById('tab-'+value).focus()}
  function openModal(p){lastFocus=document.activeElement;const m=$('#detailModal');m.hidden=false;m.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';$('.site').inert=true;$('#modalTag').textContent=p.status+' · '+p.type;$('#modalTitle').textContent=p.name;$('#modalDescription').textContent=p.desc;$('#modalNote').textContent=p.imageType==='repository screenshot'?'Visual: project repository screenshot.':p.imageType==='project cover'?'Visual: existing portfolio project cover (not a website screenshot).':'Visual: live website thumbnail, when available.';$('#modalVisit').href=p.url;const visual=$('#modalVisual');visual.replaceChildren();const fallback=create('strong','modal-fallback',p.name);visual.append(fallback);if(p.image){const img=create('img');img.alt='Preview of '+p.name;img.referrerPolicy='no-referrer';img.src=p.image;img.onerror=()=>img.remove();visual.append(img)}$('#modalClose').focus()}
  function closeModal(){const m=$('#detailModal');if(m.hidden)return;m.hidden=true;m.setAttribute('aria-hidden','true');document.body.style.overflow='';$('.site').inert=false;lastFocus?.focus()}
