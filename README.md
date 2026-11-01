@@ -1,6 +1,6 @@
 # Victor Young — Works & Links · v6 design reset
 
-**Status:** founder review candidate. A compact social-profile-inspired works directory, not another full portfolio website.
+**Status:** production deployment on `main`; founder's device-level visual acceptance remains in progress. A compact social-profile-inspired works directory, not another full portfolio website.
 
 ## Rationale and design system
 
@@ -20,3 +20,14 @@ Consulted RayzorVerse Knowledge Base: Creative Quality Audit & Anti-Generic Desi
 ## Testing checklist
 
 Mobile view 360/390/430px; desktop 1024/1440; both themes; image loads; scroll and horizontal overflow; post modal open/close; keyboard focus; search; category tabs; copy/share; CV; real outbound links; prefers-reduced-motion. Before treating a page as approved/production case-study: confirm contributor rights and prototype/demo descriptions.
+
+## Production consolidation — 2026-11-01
+
+- **Canonical GitHub repository:** `victor-young-dev/victor-links`.
+- **Production branch:** `main`, fast-forwarded from `review/social-profile-redesign-v6` after verifying a READY preview build. Both use the **same Vercel project**, `prj_05b4wmYaJUkjQygh7GTdPaKOdKxW`.
+- **Existing public URL:** https://victor-links.vercel.app/ (preserved; do not replace links without intent).
+- **Optional friendlier alias:** https://victorlinkbio.vercel.app/ (verified and linked to the same Vercel project; does not create another repository).
+- **Old production baseline:** kept only for safe history/rollback on `archive/pre-social-profile-v5-2026-11-01`. It is not the main public version.
+- **Recovered Work feedback partially implemented:** LinkedIn → GitHub → Instagram → YouTube → X → TikTok → Facebook story order; portrait opens accessible personal information gallery; stronger and accessible highlight rings; compact three-column grid on phones.
+- **Pending design acceptance:** the original two Work screenshots were not accessible through this session. The exact component intended to receive continuous **vertical** top-to-bottom marquee movement has not been positively identified, so no unrelated navigation was turned into an auto-moving target. Also recheck site cover thumbnails, photo and CV links, light theme and responsive layouts on the owner's phone.
+- **Previous deployment URLs:** Vercel can retain immutable historical/preview URLs. They do not alter which release is served by the canonical production alias.
