@@ -294,7 +294,7 @@
 /* Visual polish and gallery consistency — November 1, 2026 */
 :root{--soft-gold:linear-gradient(118deg,#977143 0%,#b68a54 37%,#d4b47b 66%,#9e794a 100%);--soft-gold-glint:linear-gradient(150deg,rgba(255,255,255,.25),transparent 52%)}
 :root[data-theme='dark']{--soft-gold:linear-gradient(118deg,#967244 0%,#b88b52 42%,#d7b782 67%,#997245 100%)}
-.brand-mark span,.bio-first span,.bio-link,.avatar-label,.connect-kicker,.modal-tag{
+.brand-mark span,.bio-first span,.bio-link,.avatar-label,.connect-kicker,.contact-kicker,.modal-tag{
   background:var(--soft-gold);
   background-clip:text;-webkit-background-clip:text;color:transparent;
 }
