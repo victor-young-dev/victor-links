@@ -249,3 +249,44 @@
 .profile-facts strong{display:block;width:100%;font-family:var(--font-body);font-size:clamp(20px,2.5vw,28px);font-weight:800;letter-spacing:-.045em;line-height:1.12;font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;text-align:center}
 .profile-facts span{display:block;width:100%;font-family:var(--font-body);font-size:clamp(10px,1.35vw,12px);line-height:1.4;text-align:center;white-space:normal}
 @media(max-width:650px){.profile-facts{gap:8px;width:100%;margin-top:18px}.profile-facts strong{font-size:clamp(20px,5.2vw,26px)}.profile-facts span{font-size:clamp(10px,2.65vw,12px)}}
+
+
+/* Batch 2 approved — profile statistics typography and alignment finishing patch. */
+.profile-facts{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(8px,2.5vw,24px);
+  width:100%;
+  max-width:530px;
+  align-items:start;
+}
+.profile-facts>div{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  gap:5px;
+  text-align:center;
+}
+.profile-facts strong{
+  font-family:var(--font-body);
+  font-weight:750;
+  font-size:clamp(18px,2.6vw,23px);
+  line-height:1.2;
+  letter-spacing:-.035em;
+  font-variant-numeric:lining-nums tabular-nums;
+  font-feature-settings:"lnum" 1,"tnum" 1;
+}
+.profile-facts span{
+  display:block;
+  font-family:var(--font-body);
+  font-weight:500;
+  line-height:1.35;
+  text-align:center;
+}
+@media(max-width:650px){
+  .profile-facts{gap:6px;margin-top:13px}
+  .profile-facts strong{font-size:18px}
+  .profile-facts span{font-size:10px;line-height:1.4}
+}
