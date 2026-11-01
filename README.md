@@ -68,3 +68,13 @@ The owner reviewed the first artwork rollout and approved a second image-directi
 - The main feed now groups **Kaabo Prototype + Kaabo Launch**, **Vendra Commerce + Vendra Social**, **HexaGuild + HexaGuild Hive + Pitch Deck**, and **Browndilux + Commerce** where possible while prioritizing the core portfolio.
 - The three proposed unlisted YouTube Shorts/project demonstration videos **have not been added**; embed URLs and explicit selections will be needed for a separate batch. The proposed Home / Profile / Catalog navigation remains discussion-only.
 - Review needed: actual phone rendering and thumbnail availability in both themes, plus artwork acceptance. Do not claim mock screenshots represent verified product functionality.
+
+## Focused polish release — 2026-11-01
+
+- De-duplicated Vendra: removed Vendra Social and renamed Vendra Commerce to Vendra Social Commerce.
+- Removed MyDala Experiment and added Atlas as a Coming soon entry with no falsely asserted live URL.
+- Restored BrandiLux feed cover to its existing project portfolio photo.
+- Unified approved project covers in grid and detail popup (RayzorVerse, Portfolio Website, Browndilux, Kaabo Prototype, Vendra Social Commerce, HexaGuild Hive/Pitch Deck, Portfolio Template, Ken AI Detector); used image CSS zoom to hide text baked into concept posters where feasible. Cosine Bus Tracker, Stallbasket, Favour Link, Kaabo Launch, BrandiLux Kit and Browndilux Commerce were intentionally not changed.
+- Replaced HexaGuild main and Haverhills fallback visuals with original editorial SVGs, not representations of real product screens. Apex Wright Lab awaits user-supplied replacement art.
+- Updated dim gold gradient accents, navbar edge/shadow, contact CTAs, Open to projects badge, and removed decorative external-pointing arrow glyphs.
+- Home/gallery expansion and YouTube Shorts remain separate proposals, not implemented.
