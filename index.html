@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#f8f8f4" />
+  <meta name="theme-color" content="#0d121a" />
+  <script>try{document.documentElement.dataset.theme=localStorage.getItem("vy-theme")||"dark"}catch(e){document.documentElement.dataset.theme="dark"}</script>
   <meta name="description" content="Victor Uzor's personal link hub — selected work, website archive, ventures, collaborations and creative services." />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Victor Uzor — Works & Links" />
@@ -12,8 +13,10 @@
   
   <link rel="preload" href="https://raw.githubusercontent.com/victor-young-dev/victor-young-portfolio/main/public/portrait.png" as="image" type="image/webp" />
   <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/v5.css" />
   <script defer src="/config.js"></script>
   <script defer src="/app.js"></script>
+  <script defer src="/v5.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -51,7 +54,7 @@
       </section>
 
       <section id="featured" class="section featured-section" aria-labelledby="featured-title">
-        <div class="section-heading"><div><span class="section-label">A GOOD PLACE TO START</span><h2 id="featured-title">The front shelf</h2></div><p>Four links worth opening first.</p></div>
+        <div class="section-heading"><div><span class="section-label">A GOOD PLACE TO START</span><h2 id="featured-title">The front shelf</h2></div><p>Real project previews where available; graceful fallbacks otherwise.</p></div>
         <div class="featured-grid" id="featuredGrid">
           <a class="featured-card" href="https://rayzorverse.vercel.app/"><span class="feature-placeholder">RayzorVerse</span></a>
           <a class="featured-card" href="https://cosinebt.vercel.app/?welcome=1"><span class="feature-placeholder">Cosine Bus Tracker</span></a>
