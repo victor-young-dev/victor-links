@@ -1,19 +1,22 @@
 import {defineField,defineType} from 'sanity';
 const linkFields=[
- defineField({name:'title',title:'Title',type:'string',validation:r=>r.required()}),
- defineField({name:'url',title:'Destination',type:'url',validation:r=>r.required().uri({allowRelative:true,scheme:['https','mailto']})})
+  defineField({name:'title',title:'Link title',type:'string',validation:r=>r.required()}),
+  defineField({name:'url',title:'URL',type:'url',validation:r=>r.required().uri({allowRelative:true,scheme:['https','mailto']})})
 ];
 export const linkHub=defineType({
- name:'linkHub',title:'Personal Link Hub',type:'document',fields:[
-  defineField({name:'fullName',title:'Display name',type:'string',validation:r=>r.required()}),
-  defineField({name:'alias',title:'Public name / alias',type:'string'}),
-  defineField({name:'role',title:'One-line positioning',type:'string'}),
-  defineField({name:'description',title:'Short biography',type:'text',rows:3}),
-  defineField({name:'avatar',title:'Portrait',type:'image',options:{hotspot:true}}),
-  defineField({name:'primaryLinks',title:'Primary links',type:'array',of:[{type:'object',fields:[...linkFields,defineField({name:'subtitle',title:'Supporting text',type:'string'}),defineField({name:'featured',title:'Featured',type:'boolean',initialValue:false})]}]}),
-  defineField({name:'projects',title:'Selected work',type:'array',of:[{type:'object',fields:[...linkFields,defineField({name:'description',title:'Role and status',type:'string'})]}]}),
-  defineField({name:'socialLinks',title:'Social profiles',type:'array',of:[{type:'object',fields:linkFields}]}),
-  defineField({name:'ventureUrl',title:'RayzorVerse URL',type:'url'}),
-  defineField({name:'ventureEmail',title:'Venture enquiry email',type:'string'})
- ],preview:{select:{title:'fullName',media:'avatar'}}
+  name:'linkHub',title:'Victor — Works & Links',type:'document',fields:[
+    defineField({name:'fullName',title:'Full name',type:'string'}),
+    defineField({name:'alias',title:'Public name',type:'string'}),
+    defineField({name:'role',title:'Positioning',type:'string'}),
+    defineField({name:'description',title:'Introduction',type:'text',rows:3}),
+    defineField({name:'avatar',title:'Portrait',type:'image',options:{hotspot:true}}),
+    defineField({name:'projects',title:'Archive links',type:'array',of:[{
+      type:'object',fields:[...linkFields,
+        defineField({name:'description',type:'string'}),
+        defineField({name:'category',type:'string',options:{list:['Websites','Brands','Communities','Products','Experiments','Collaborations']}}),
+        defineField({name:'status',type:'string'}),
+        defineField({name:'monogram',type:'string'})
+      ]}]}),
+    defineField({name:'socialLinks',title:'Other public links',type:'array',of:[{type:'object',fields:linkFields}]})
+  ],preview:{select:{title:'fullName',media:'avatar'}}
 });
