@@ -56,3 +56,15 @@ Initial curated batch deployed on `main`: **9** individual editorial SVG cover i
 - Remaining **12** entries retain their existing thumbnail sources; no mass replacement was performed.
 - Quality gate: checked expected cover paths on `main`, SVG element balancing, JavaScript syntax and READY Vercel production deployment. Manual visual inspection on phone is still required.
 - Later: selectively replace approved illustrations with verified project photographs or true screenshots, and add the user's three unlisted videos only after supplying the actual links and confirming embed permissions.
+
+## Batch 3 follow-up — image realism and related-project ordering
+
+The owner reviewed the first artwork rollout and approved a second image-direction pass, requesting more project-specific realism and closer grouping of related projects.
+
+- The first nine high-priority feed cards now prefer **existing project portfolio images, archived RayzorVerse screenshot, or attempted website-thumbnail captures**, rather than the earlier series of nine similarly stylized editorial SVG posters.
+- These sources are backed by a local original editorial fallback if the remote image is unavailable. A website thumbnail attempt is **not** claimed to have been independently verified as the latest live design.
+- The three owner-identified weak thumbnails (Portfolio Site Template, HexaGuild Hive, Ken AI Detector) are replaced with bespoke local SVG conceptual UI covers at `assets/covers/*-v2.svg`; these are **design illustrations**, not genuine website screenshots or copies of the full generated mockup images.
+- The project grid retains one consistent portrait aspect ratio across desktop/mobile, three pinned posts at the start, searchable tabs, and the owner-approved dark/light contrast and social highlight interactions.
+- The main feed now groups **Kaabo Prototype + Kaabo Launch**, **Vendra Commerce + Vendra Social**, **HexaGuild + HexaGuild Hive + Pitch Deck**, and **Browndilux + Commerce** where possible while prioritizing the core portfolio.
+- The three proposed unlisted YouTube Shorts/project demonstration videos **have not been added**; embed URLs and explicit selections will be needed for a separate batch. The proposed Home / Profile / Catalog navigation remains discussion-only.
+- Review needed: actual phone rendering and thumbnail availability in both themes, plus artwork acceptance. Do not claim mock screenshots represent verified product functionality.
