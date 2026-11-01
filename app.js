@@ -1,146 +1,63 @@
-/* Victor / My Works — intentionally lightweight, no tracking scripts or UI framework. */
-(() => {
-  'use strict';
-  const archives = [
-    {name:'RayzorVerse',desc:'The venture ecosystem',url:'https://rayzorverse.vercel.app/',group:'Websites',tag:'Main site',monogram:'RV'},
-    {name:'My Portfolio Website',desc:'Personal portfolio site',url:'https://victoryoung.vercel.app/',group:'Websites',tag:'Portfolio',monogram:'VY'},
-    {name:'Portfolio Site Template',desc:'Alternate portfolio concept',url:'https://vyportfolio-nu.vercel.app/',group:'Websites',tag:'Template',monogram:'PT'},
-    {name:'BrandiLux',desc:'Branding & creative services',url:'https://brandi-lux.netlify.app/',group:'Brands',tag:'Website',monogram:'BL'},
-    {name:'BrandiLux Kit',desc:'Creative kit and asset prototype',url:'https://brandilux-kit.vercel.app/',group:'Brands',tag:'Prototype',monogram:'BK'},
-    {name:'Apex Wright Lab',desc:'Writing, research & documentation',url:'https://apex-wright-lab.vercel.app/',group:'Brands',tag:'Website',monogram:'AW'},
-    {name:'HexaGuild',desc:'Community and talent initiative',url:'https://hexaguild.vercel.app/',group:'Communities',tag:'Website',monogram:'HG'},
-    {name:'HexaGuild Hive',desc:'Community concept',url:'https://hexaguild-hive.vercel.app/',group:'Communities',tag:'Concept',monogram:'HH'},
-    {name:'HexaGuild Pitch Deck',desc:'Venture presentation',url:'https://hexaguid-pitchdeck.netlify.app/',group:'Communities',tag:'Pitch deck',monogram:'PD'},
-    {name:'Browndilux Commerce',desc:'Sample business landing page',url:'https://browndilux-commerce.vercel.app/',group:'Brands',tag:'Sample',monogram:'BC'},
-    {name:'Browndilux Fashion',desc:'Fashion brand landing page',url:'https://browndilux.vercel.app/',group:'Brands',tag:'Landing',monogram:'BF'},
-    {name:'Favour Link Stores',desc:'My first business landing page',url:'https://favourlink.netlify.app/',group:'Websites',tag:'Earlier work',monogram:'FL'},
-    {name:'Stallbasket',desc:'Business landing page',url:'https://stallbasket.polsia.app/',group:'Websites',tag:'Landing',monogram:'SB'},
-    {name:'Haverhills Standard',desc:'Company website for my brother’s ventures',url:'https://haverhills.netlify.app/',group:'Websites',tag:'Website',monogram:'HS'},
-    {name:'Kaabo Prototype',desc:'Commerce and delivery product concept',url:'https://kaabotesting.netlify.app/products',group:'Products',tag:'Prototype',monogram:'KB'},
-    {name:'Kaabo Launch',desc:'Product launch landing page',url:'https://kaabonglaunch.netlify.app/',group:'Products',tag:'Launch page',monogram:'KL'},
-    {name:'Ken AI Detector',desc:'Final-year project application',url:'https://ken-ai-detector.onrender.com/app',group:'Experiments',tag:'Project',monogram:'AI'},
-    {name:'Vendra Commerce',desc:'Commerce product concept',url:'https://vendracommerce.netlify.app/',group:'Products',tag:'Prototype',monogram:'VC'},
-    {name:'Vendra Social',desc:'Social-commerce product interface',url:'https://vendrasocial.netlify.app/cart',group:'Products',tag:'Prototype',monogram:'VS'},
-    {name:'MyDala experiment',desc:'Experimental deployment',url:'https://e926a577.mydala.app',group:'Experiments',tag:'Experiment',monogram:'MD'},
-    {name:'Cosine Bus Tracker',desc:'Collaborative student transport demo',url:'https://cosinebt.vercel.app/?welcome=1',group:'Collaborations',tag:'Collaboration',monogram:'CB'}
-  ];
-  const personal = [
-    ['GitHub','https://github.com/victor-young-dev'],
-    ['LinkedIn','https://www.linkedin.com/in/victor-uzor-3601343a9'],
-    ['X / Twitter','https://x.com/I_amVic_tor'],
-    ['Instagram','https://instagram.com/victor_young.tech']
-  ];
-  const studio = [
-    ['Instagram','https://instagram.com/rayzorverse'],
-    ['X / Twitter','https://x.com/RayzorVerse'],
-    ['Facebook','https://www.facebook.com/share/1DyRpRpePm/'],
-    ['TikTok','https://tiktok.com/@rayzorverse'],
-    ['YouTube','https://youtube.com/@rayzorverse'],
-    ['YouTube Community','https://youtube.com/@rayzorverse/community'],
-    ['Google Business','https://share.google/1tHO86zceeUpLuzvw']
-  ];
-  const services = ['Websites & landing pages','Content & digital storytelling','Video editing & motion','Graphic design','Social media support','Digital workflows','Product prototyping','Research & documentation'];
-  const featureConfig = [
-    {key:'RayzorVerse',poster:'rayzor',label:'venture ecosystem',mark:'Rayzor<br>Verse',blurb:'A home for ideas, brands and new ventures.'},
-    {key:'Cosine Bus Tracker',poster:'cosine',label:'collaborative build',mark:'cosine<br>tracker',blurb:'A campus transport tracking project — built collaboratively.'},
-    {key:'BrandiLux',poster:'brandi',label:'creative work',mark:'BrandiLux',blurb:'Brand identities, visual systems and communication.'},
-    {key:'Apex Wright Lab',poster:'apex',label:'writing & research',mark:'Apex<br>Wright',blurb:'Writing, documentation and research support.'}
-  ];
-  const $ = selector => document.querySelector(selector);
-  const make = (tag,cls,text) => {const el=document.createElement(tag);if(cls)el.className=cls;if(text!==undefined)el.textContent=text;return el};
-  const safeHref = href => {if(typeof href!=='string')return null;try{const u=new URL(href,location.href);return ['https:','mailto:'].includes(u.protocol)?u.href:null}catch{return null}};
-  const link = (href,cls) => {const a=make('a',cls);a.href=safeHref(href)||'#archive';if(a.href.startsWith('https://')){a.target='_blank';a.rel='noopener noreferrer'}return a};
-  let items=archives, currentCategory='All work', currentTerm='', expanded=false;
-  let observer;
-  function setupObserver(){
-    if(observer)observer.disconnect();
-    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window))return;
-    observer=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}}},{threshold:.05,rootMargin:'0px 0px -15px 0px'});
-    document.querySelectorAll('.reveal-item:not(.is-visible)').forEach(el=>observer.observe(el));
-  }
-  function renderFeatured(){
-    const host=$('#featuredGrid');host.replaceChildren();
-    for(const feat of featureConfig){
-      const data=items.find(x=>x.name===feat.key)||archives.find(x=>x.name===feat.key);if(!data)continue;
-      const a=link(data.url,'featured-card reveal-item');
-      const poster=make('div','poster '+feat.poster);
-      const caption=make('span','poster-caption',feat.label);poster.append(caption);
-      if(feat.poster==='cosine'){
-        const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('class','poster-path');svg.setAttribute('viewBox','0 0 220 140');svg.setAttribute('aria-hidden','true');
-        const p=document.createElementNS('http://www.w3.org/2000/svg','path');p.setAttribute('d','M215 8C158 23 215 65 139 73S90 112 30 133');svg.append(p);poster.append(svg);
-      }
-      // Creative thumbnails are typographic posters, not fabricated website screenshots.
-      const stamp=make('strong','poster-mark');stamp.innerHTML=feat.mark;poster.append(stamp);
-      const body=make('div','featured-body');
-      const meta=make('div','featured-meta');meta.append(make('span','',data.tag),make('span','','External link'));
-      const title=make('h3','',data.name),description=make('p','',feat.blurb);
-      const visit=make('div','featured-action');visit.append(make('span','','Explore project'),make('span','','↗'));
-      body.append(meta,title,description,visit);a.append(poster,body);host.append(a);
-    }
-  }
-  function renderFilters(){
-    const host=$('#categoryFilters');host.replaceChildren();
-    const categories=['All work','Websites','Brands','Communities','Products','Experiments','Collaborations'];
-    categories.forEach(cat=>{
-      const b=make('button','filter'+(cat===currentCategory?' active':''),cat);b.type='button';b.setAttribute('aria-pressed',String(cat===currentCategory));
-      b.addEventListener('click',()=>{currentCategory=cat;expanded=false;renderFilters();renderArchive()});host.append(b);
-    });
-  }
-  function archiveCard(data,index){
-    const a=link(data.url,'archive-card reveal-item');
-    const art=make('span','archive-art theme-'+['a','b','c','d','e','f'][index%6],data.monogram||data.name.slice(0,2));art.setAttribute('aria-hidden','true');
-    const copy=make('div','archive-copy');copy.append(make('h3','',data.name),make('p','',data.desc),make('span','status-line',data.tag));
-    const arrow=make('span','archive-arrow','↗');arrow.setAttribute('aria-hidden','true');
-    a.append(art,copy,arrow);return a;
-  }
-  function renderArchive(){
-    const host=$('#archiveGrid');host.replaceChildren();
-    const selected=items.filter(x=>(currentCategory==='All work'||x.group===currentCategory)&&((x.name+' '+x.desc+' '+x.group+' '+x.tag).toLowerCase().includes(currentTerm.toLowerCase())));
-    const visible=expanded||currentTerm?selected:selected.slice(0,8);
-    visible.forEach((item,i)=>host.append(archiveCard(item,i)));
-    $('#resultCount').textContent=`${selected.length} ${selected.length===1?'link':'links'}`;
-    $('#archiveEmpty').hidden=selected.length>0;
-    const more=$('#showMore');more.hidden=expanded||currentTerm.length>0||selected.length<=8;more.textContent=`Show ${selected.length-8} more links  ↓`;
-    setupObserver();
-  }
-  function renderSocials(hostSelector,list){
-    const host=$(hostSelector);host.replaceChildren();
-    list.forEach(([label,url])=>{const a=link(url,'social-pill');a.append(make('span','',label),make('span','social-arrow','↗'));host.append(a)});
-  }
-  function renderSkills(){const host=$('#skills');host.replaceChildren();services.forEach(s=>host.append(make('span','skill',s)))}
-  function wireInteractions(){
-    $('#year').textContent=new Date().getFullYear();
-    $('#searchInput').addEventListener('input',event=>{currentTerm=event.target.value.trim();expanded=false;renderArchive()});
-    $('#showMore').addEventListener('click',()=>{expanded=true;renderArchive();});
-    $('#resetFilters').addEventListener('click',()=>{currentCategory='All work';currentTerm='';expanded=false;$('#searchInput').value='';renderFilters();renderArchive()});
-    $('#shareButton').addEventListener('click',async()=>{
-      try{
-        if(navigator.share){await navigator.share({title:document.title,url:location.href});return}
-        if(navigator.clipboard){await navigator.clipboard.writeText(location.href);showToast('Link copied');return}
-      }catch(e){if(e.name==='AbortError')return}
-      showToast('Copy the address from your browser');
-    });
-  }
-  let toastTimer;function showToast(message){const t=$('#toast');t.textContent=message;t.hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.hidden=true,2700)}
-  async function optionalCMS(){
-    const cfg=window.LINKHUB_CMS||{};
-    if(!/^[a-z0-9-]{5,20}$/.test(cfg.projectId||''))return;
-    const ds=/^[a-z0-9_-]+$/.test(cfg.dataset||'')?cfg.dataset:'production';
-    const q='*[_type=="linkHub"]|order(_updatedAt desc)[0]{fullName,alias,role,description,projects[]{title,description,url,category,status,monogram},socialLinks[]{title,url}}';
-    const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),5000);
-    try{
-      const response=await fetch(`https://${cfg.projectId}.apicdn.sanity.io/v${cfg.apiVersion||'2025-05-01'}/data/query/${ds}?query=${encodeURIComponent(q)}`,{signal:controller.signal});if(!response.ok)return;
-      const d=(await response.json()).result;if(!d)return;
-      if(d.alias||d.fullName)$('#publicName').textContent=[d.alias,d.fullName].filter(Boolean).join(' / ');
-      if(d.description)$('#heroDescription').textContent=d.description;
-      if(Array.isArray(d.projects)&&d.projects.length){
-        const adapted=d.projects.filter(x=>safeHref(x.url)).map((x,i)=>({name:x.title,desc:x.description||'Project',url:x.url,group:x.category||'Experiments',tag:x.status||'Project',monogram:(x.monogram||x.title||'W').slice(0,3)}));
-        if(adapted.length){items=adapted;currentCategory='All work';renderFilters();renderArchive();renderFeatured()}
-      }
-    }catch(e){}finally{clearTimeout(timer)}
-  }
-  function init(){
-    renderFeatured();renderFilters();renderArchive();renderSocials('#personalLinks',personal);renderSocials('#studioSocials',studio);renderSkills();wireInteractions();optionalCMS();setupObserver();
-  }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+/* Victor Young — works & links. Public link directory, no tracking or fake engagement metrics. */
+(()=>{'use strict';
+ const G='https://raw.githubusercontent.com/victor-young-dev/';
+ const screenshot=(url)=>'https://image.thum.io/get/width/620/crop/850/noanimate/'+url;
+ const projects=[
+  {name:'RayzorVerse',type:'Venture ecosystem',category:'brands',status:'Main website',url:'https://rayzorverse.vercel.app/',image:G+'RayzorVerse.site/main/docs/screenshots/homepage-desktop.jpg',imageType:'repository screenshot',pinned:true,desc:'Founder-led venture studio and innovation ecosystem, turning ideas into digital products, brands and practical solutions.'},
+  {name:'My Portfolio Website',type:'Personal website',category:'web',status:'Portfolio',url:'https://victoryoung.vercel.app/',image:screenshot('https://victoryoung.vercel.app/'),imageType:'live capture attempt',desc:'A fuller personal website and project portfolio. This link hub remains a simpler directory.'},
+  {name:'BrandiLux',type:'Brand & visual identity',category:'brands',status:'Website',url:'https://brandi-lux.netlify.app/',image:G+'victor-young-portfolio/main/public/work/brandilux.jpg',imageType:'project cover',pinned:true,desc:'A visual identity and website direction for BrandiLux.'},
+  {name:'Apex Wright Lab',type:'Writing & research',category:'brands',status:'Website',url:'https://apex-wright-lab.vercel.app/',image:G+'victor-young-portfolio/main/public/work/apex.jpg',imageType:'project cover',pinned:true,desc:'Writing, research, documentation and business communication work.'},
+  {name:'Kaabo Prototype',type:'Product design',category:'products',status:'Prototype',url:'https://kaabotesting.netlify.app/products',image:G+'kaabo/main/tmp_test/mobile-1-initial.png',imageType:'repository screenshot',desc:'Marketplace product prototype. Functions and commercial operations are not represented as production-verified.'},
+  {name:'Vendra Commerce',type:'Commerce experiment',category:'products',status:'Prototype',url:'https://vendracommerce.netlify.app/',image:G+'victor-young-portfolio/main/public/work/vendra.png',imageType:'project cover',desc:'A social commerce and marketplace concept under development.'},
+  {name:'Cosine Bus Tracker',type:'Campus transport',category:'products',status:'Collaboration demo',url:'https://cosinebt.vercel.app/?welcome=1',image:screenshot('https://cosinebt.vercel.app/?welcome=1'),imageType:'live capture attempt',desc:'Student transport tracking concept developed collaboratively with Cosine. Live GPS reliability has not been independently verified.'},
+  {name:'HexaGuild',type:'Community platform',category:'brands',status:'Website',url:'https://hexaguild.vercel.app/',image:screenshot('https://hexaguild.vercel.app/'),imageType:'live capture attempt',desc:'A community and talent development initiative.'},
+  {name:'Browndilux',type:'Fashion brand',category:'brands',status:'Landing page',url:'https://browndilux.vercel.app/',image:screenshot('https://browndilux.vercel.app/'),imageType:'live capture attempt',desc:'Fashion brand landing page direction.'},
+  {name:'Portfolio Site Template',type:'Website concept',category:'web',status:'Template',url:'https://vyportfolio-nu.vercel.app/',image:screenshot('https://vyportfolio-nu.vercel.app/'),imageType:'live capture attempt',desc:'Alternative personal portfolio template and layout experiment.'},
+  {name:'BrandiLux Kit',type:'Branding tools',category:'brands',status:'Prototype',url:'https://brandilux-kit.vercel.app/',image:screenshot('https://brandilux-kit.vercel.app/'),imageType:'live capture attempt',desc:'Reusable creative kit and visual identity prototype.'},
+  {name:'HexaGuild Hive',type:'Community experiment',category:'brands',status:'Website',url:'https://hexaguild-hive.vercel.app/',image:screenshot('https://hexaguild-hive.vercel.app/'),imageType:'live capture attempt',desc:'Companion community concept related to HexaGuild.'},
+  {name:'HexaGuild Pitch Deck',type:'Pitch presentation',category:'brands',status:'Pitch deck',url:'https://hexaguid-pitchdeck.netlify.app/',image:screenshot('https://hexaguid-pitchdeck.netlify.app/'),imageType:'live capture attempt',desc:'Presentation and storytelling support for HexaGuild.'},
+  {name:'Browndilux Commerce',type:'Business landing',category:'brands',status:'Sample',url:'https://browndilux-commerce.vercel.app/',image:screenshot('https://browndilux-commerce.vercel.app/'),imageType:'live capture attempt',desc:'Sample business landing page and storefront direction.'},
+  {name:'Favour Link Stores',type:'Business landing',category:'web',status:'Early work',url:'https://favourlink.netlify.app',image:G+'victor-young-portfolio/main/public/work/favour-link.jpg',imageType:'project cover',desc:'My first landing-page project — an early milestone in my work.'},
+  {name:'Stallbasket Landing',type:'Commerce concept',category:'products',status:'Sample',url:'https://stallbasket.polsia.app/',image:screenshot('https://stallbasket.polsia.app/'),imageType:'live capture attempt',desc:'A landing-page concept for commerce.'},
+  {name:'Haverhills Standard',type:'Company website',category:'web',status:'Website',url:'https://haverhills.netlify.app/',image:screenshot('https://haverhills.netlify.app/'),imageType:'live capture attempt',desc:'A website for a family business venture.'},
+  {name:'Kaabo Launch',type:'Product launch',category:'products',status:'Launch page',url:'https://kaabonglaunch.netlify.app/',image:G+'victor-young-portfolio/main/public/work/kaabo.jpg',imageType:'project cover',desc:'Marketing and launch site for the Kaabo marketplace concept.'},
+  {name:'Ken AI Detector',type:'Academic project',category:'products',status:'Final-year project',url:'https://ken-ai-detector.onrender.com/app',image:screenshot('https://ken-ai-detector.onrender.com/app'),imageType:'live capture attempt',desc:'Final-year software project exploring AI-content analysis.'},
+  {name:'Vendra Social',type:'Social commerce',category:'products',status:'Prototype',url:'https://vendrasocial.netlify.app/cart',image:G+'victor-young-portfolio/main/public/work/vendra-light.png',imageType:'project cover',desc:'Social-commerce shopping experience, still a prototype.'},
+  {name:'MyDala Experiment',type:'Exploration',category:'products',status:'Experiment',url:'https://e926a577.mydala.app',image:screenshot('https://e926a577.mydala.app'),imageType:'live capture attempt',desc:'Experimental product deployment.'}
+ ];
+ const personal=[['GitHub','https://github.com/victor-young-dev'],['LinkedIn','https://www.linkedin.com/in/victor-uzor-3601343a9'],['X','https://x.com/I_amVic_tor'],['Portfolio','https://victoryoung.vercel.app/'],['Email','mailto:rayzorverse@gmail.com?subject=Hello%20Victor']];
+ const studio=[['Instagram','https://instagram.com/rayzorverse'],['X','https://x.com/RayzorVerse'],['Facebook','https://www.facebook.com/share/1DyRpRpePm/'],['TikTok','https://tiktok.com/@rayzorverse'],['YouTube','https://youtube.com/@rayzorverse'],['YouTube Community','https://youtube.com/@rayzorverse/community'],['Google Business','https://share.google/1tHO86zceeUpLuzvw']];
+ const highlights=[
+  {title:'Instagram',url:studio[0][1],style:'ig',symbol:'instagram'},
+  {title:'TikTok',url:studio[3][1],style:'tiktok',symbol:'tiktok'},
+  {title:'YouTube',url:studio[4][1],style:'youtube',symbol:'youtube'},
+  {title:'LinkedIn',url:personal[1][1],style:'linkedin',symbol:'linkedin'},
+  {title:'GitHub',url:personal[0][1],style:'github',symbol:'github'},
+  {title:'X',url:studio[1][1],style:'x',symbol:'x'},
+  {title:'Facebook',url:studio[2][1],style:'facebook',symbol:'facebook'}
+ ];
+ const icons={
+  instagram:'<rect x="4" y="4" width="16" height="16" rx="5" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="12" r="3.6" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="17" cy="7" r="1.3" fill="currentColor"/>',
+  tiktok:'<path fill="currentColor" d="M15.2 3c.6 2.3 1.8 3.7 4.3 4v3.4a9 9 0 0 1-4.4-1.2v6.3c0 3.4-2.3 5.7-5.6 5.7S4 19.2 4 16c0-3.7 3-6.3 6.7-5.9v3.5c-1.7-.3-3 .7-3 2.3 0 1.3.9 2.2 2.2 2.2 1.5 0 2.1-1 2.1-2.7V3h3.2z"/>',
+  youtube:'<path fill="currentColor" d="M21.3 7.8c-.3-1.2-1.1-1.9-2.3-2.2A68 68 0 0 0 5 5.6c-1.2.3-2 1-2.3 2.2-.6 2.8-.6 5.6 0 8.4.3 1.2 1.1 1.9 2.3 2.2 4.7.6 9.3.6 14 0 1.2-.3 2-1 2.3-2.2.6-2.8.6-5.6 0-8.4ZM10 15.8V8.2l6.2 3.8L10 15.8z"/>',
+  linkedin:'<rect x="3" y="3" width="18" height="18" rx="3" fill="none" stroke="#fff" stroke-width="1.8"/><path d="M7 10v7m0-10v.2M11 17v-7m0 3a3 3 0 0 1 6 0v4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/>',
+  github:'<path fill="currentColor" d="M12 2.7a9.3 9.3 0 0 0-2.9 18.1c.5.1.7-.2.7-.5v-1.8C7 19 6.4 17.2 6.4 17.2c-.5-1.1-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 3 .8.1-.6.4-1 .7-1.2-2.3-.3-4.7-1.1-4.7-5.2 0-1.1.4-2.1 1-2.8-.1-.3-.4-1.3.1-2.7 0 0 .9-.3 2.9 1.1a10 10 0 0 1 5.2 0c2-1.4 2.9-1.1 2.9-1.1.5 1.4.2 2.4.1 2.7.7.7 1.1 1.7 1.1 2.8 0 4.1-2.5 4.9-4.8 5.2.4.3.7.9.7 1.8v2.7c0 .3.2.6.7.5A9.3 9.3 0 0 0 12 2.7z"/>',
+  x:'<path fill="currentColor" d="M4 3h4.5l4.3 5.7L17.8 3H21l-6.7 7.6L21.5 21H17l-4.9-6.5L6.4 21H3l7.4-8.4L4 3zm2.3 1.7 11.4 14.6h1.5L7.8 4.7H6.3z"/>',
+  facebook:'<path fill="currentColor" d="M14 21v-8h3l.5-3.5H14V7.3c0-1 .3-1.7 1.8-1.7h1.9V2.4A26 26 0 0 0 15 2c-3 0-5 1.8-5 5v2.5H7V13h3v8h4z"/>'
+ };
+ const $=s=>document.querySelector(s); const create=(tag,cls,text)=>{const x=document.createElement(tag);if(cls)x.className=cls;if(text!==undefined)x.textContent=text;return x};
+ const safe=url=>{try{const u=new URL(url);return ['https:','mailto:'].includes(u.protocol)?u.href:null}catch{return null}};
+ let currentTab='all',term='',shown=12, lastFocus=null;
+ function renderHighlights(){let root=$('#highlights');root.replaceChildren();highlights.forEach(item=>{let a=create('a','story-link');a.href=item.url;a.target='_blank';a.rel='noopener noreferrer';a.title='Open '+item.title;let ring=create('span','story-ring'),inside=create('span','story-inner'),symbol=create('span','story-icon '+item.style);symbol.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true">'+icons[item.symbol]+'</svg>';inside.append(symbol);ring.append(inside);a.append(ring,create('span','story-label',item.title));root.append(a)})}
+ function makeCard(p,i){const b=create('button','post-card');b.type='button';b.setAttribute('aria-label','View '+p.name+' project details');b.style.animationDelay=Math.min(i,12)*26+'ms';const fallback=create('span','post-fallback');fallback.append(create('span','fallback-top',p.type.toUpperCase()),create('strong','',p.name),create('span','fallback-line'));const art=create('span','fallback-art art-'+p.category);art.setAttribute('aria-hidden','true');const ring=create('span','art-ring'),ray=create('span','art-ray'),tile=create('span','art-tile');art.append(ring,ray,tile);fallback.append(art);b.append(fallback);if(p.image){const img=create('img','post-image');img.alt='';img.loading=i<3?'eager':'lazy';img.decoding='async';img.referrerPolicy='no-referrer';img.src=p.image;img.onload=()=>{b.classList.add('has-image')};img.onerror=()=>{img.remove()};b.append(img)}b.append(create('span','post-scrim'));let text=create('span','post-content');text.append(create('span','post-name',p.name),create('span','post-type',p.status));b.append(text);if(p.pinned)b.append(create('span','post-pin','PINNED'));b.addEventListener('click',()=>openModal(p));return b}
+ function visibleProjects(){let base=projects;if(currentTab==='products')base=base.filter(p=>p.category==='products');if(currentTab==='brands')base=base.filter(p=>p.category==='brands');return base.filter(p=>[p.name,p.type,p.status,p.desc].join(' ').toLowerCase().includes(term.toLowerCase()))}
+ function renderGrid(){const connect=currentTab==='connect';$('#tabPanel').hidden=connect;$('#connectPanel').hidden=!connect;if(connect)return;const selected=visibleProjects(),items=selected.slice(0,shown),root=$('#workGrid');root.replaceChildren(...items.map(makeCard));$('#feedLabel').textContent=currentTab==='all'?'Selected works':currentTab==='products'?'Products & experiments':'Brands & websites';$('#feedCount').textContent=selected.length+' links';$('#emptyState').hidden=!!selected.length;const more=$('#loadMore');more.hidden=selected.length<=shown;more.textContent='View '+(selected.length-shown)+' more projects ↓';}
+ function switchTab(value,focus=false){currentTab=value;shown=12;document.querySelectorAll('.tab').forEach(b=>{const active=b.dataset.tab===value;b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));b.tabIndex=active?0:-1});$('#tabPanel').setAttribute('aria-labelledby','tab-'+value);$('#searchRegion').hidden=true;$('#searchToggle').hidden=value==='connect';$('#searchToggle').setAttribute('aria-expanded','false');$('#searchInput').value='';term='';renderGrid();if(focus)document.getElementById('tab-'+value).focus()}
+ function openModal(p){lastFocus=document.activeElement;const m=$('#detailModal');m.hidden=false;m.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';$('#modalTag').textContent=p.status+' · '+p.type;$('#modalTitle').textContent=p.name;$('#modalDescription').textContent=p.desc;$('#modalNote').textContent=p.imageType==='repository screenshot'?'Visual: project repository screenshot.':p.imageType==='project cover'?'Visual: existing portfolio project cover (not a website screenshot).':'Visual: live website thumbnail, when available.';$('#modalVisit').href=p.url;const visual=$('#modalVisual');visual.replaceChildren();const fallback=create('strong','modal-fallback',p.name);visual.append(fallback);if(p.image){const img=create('img');img.alt='Preview of '+p.name;img.referrerPolicy='no-referrer';img.src=p.image;img.onerror=()=>img.remove();visual.append(img)}$('#modalClose').focus()}
+ function closeModal(){const m=$('#detailModal');if(m.hidden)return;m.hidden=true;m.setAttribute('aria-hidden','true');document.body.style.overflow='';lastFocus?.focus()}
+ function addLinks(selector,items){const box=$(selector);box.replaceChildren();items.forEach(([name,url])=>{if(!safe(url))return;const a=create('a','',name+' ↗');a.href=url;if(url.startsWith('http')){a.target='_blank';a.rel='noopener noreferrer'}box.append(a)})}
+ function setTheme(mode){document.documentElement.dataset.theme=mode;try{localStorage.setItem('vy-theme',mode)}catch(e){}const btn=$('#themeToggle');btn.setAttribute('aria-label',mode==='dark'?'Switch to light theme':'Switch to dark theme');btn.innerHTML='<svg class="icon"><use href="#i-'+(mode==='dark'?'sun':'moon')+'"></use></svg>';document.querySelector('meta[name="theme-color"]').content=mode==='dark'?'#0a111c':'#f8f7f3'}
+ let toastTimer;function toast(t){const b=$('#toast');b.textContent=t;b.hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>b.hidden=true,2400)}
+ function init(){setTheme(document.documentElement.dataset.theme==='light'?'light':'dark');$('#projectCount').textContent=projects.length;$('#year').textContent=String(new Date().getFullYear());renderHighlights();addLinks('#personalLinks',personal);addLinks('#studioLinks',studio);renderGrid();$('#themeToggle').addEventListener('click',()=>setTheme(document.documentElement.dataset.theme==='dark'?'light':'dark'));$('#shareButton').addEventListener('click',async()=>{try{if(navigator.share){await navigator.share({title:document.title,url:location.href});return}if(navigator.clipboard){await navigator.clipboard.writeText(location.href);toast('Link copied');return}}catch(e){if(e?.name==='AbortError')return}toast('Copy the page address to share')});document.querySelectorAll('.tab').forEach(b=>{b.addEventListener('click',()=>switchTab(b.dataset.tab));b.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight'].includes(e.key))return;e.preventDefault();let tabs=[...document.querySelectorAll('.tab')],i=tabs.indexOf(b),step=e.key==='ArrowRight'?1:-1;switchTab(tabs[(i+step+tabs.length)%tabs.length].dataset.tab,true)})});$('#searchToggle').addEventListener('click',()=>{const r=$('#searchRegion');r.hidden=!r.hidden;$('#searchToggle').setAttribute('aria-expanded',String(!r.hidden));if(!r.hidden)$('#searchInput').focus();else{$('#searchInput').value='';term='';renderGrid()}});$('#searchInput').addEventListener('input',e=>{term=e.target.value.trim();shown=21;renderGrid()});$('#loadMore').addEventListener('click',()=>{shown=21;renderGrid()});$('#modalClose').addEventListener('click',closeModal);$('#detailModal').addEventListener('click',e=>{if(e.target?.dataset?.close)closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});}
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
