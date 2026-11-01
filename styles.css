@@ -130,3 +130,71 @@
   .post-content{gap:4px}
   .post-pin{font-size:7px;letter-spacing:0}
 }
+
+
+/* Batch 2 — continuous accessible social highlights and viewport-triggered motion. */
+/* One complete seven-link group is repeated visually; the duplicate is hidden from accessibility APIs. */
+.highlight-marquee{
+  position:relative;
+  width:100%;
+  overflow:hidden;
+  isolation:isolate;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 4%,#000 96%,transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0%,#000 4%,#000 96%,transparent 100%);
+}
+.highlight-track{
+  --marquee-gap:20px;
+  display:flex;
+  align-items:flex-start;
+  gap:var(--marquee-gap);
+  width:max-content;
+  overflow:visible;
+  overscroll-behavior:auto;
+  padding:4px 0 12px;
+  scroll-snap-type:none;
+  will-change:transform;
+  animation:highlightSlide 29s linear infinite;
+}
+.highlight-set{
+  display:flex;
+  align-items:flex-start;
+  flex:none;
+  gap:var(--marquee-gap);
+  width:max-content;
+}
+.highlight-set .story-link{scroll-snap-align:none}
+.highlight-marquee:hover .highlight-track,
+.highlight-marquee:focus-within .highlight-track,
+.highlight-marquee:active .highlight-track{
+  animation-play-state:paused;
+}
+@keyframes highlightSlide{
+  from{transform:translate3d(0,0,0)}
+  to{transform:translate3d(calc(-50% - var(--marquee-gap) / 2),0,0)}
+}
+/* A small entrance happens when a card reaches the viewport, not before people scroll to it. */
+.post-card.motion-pending{
+  opacity:0;
+  animation:none;
+  transform:translate3d(0,15px,0) scale(.985);
+}
+.post-card.motion-enter{
+  animation:feedCardEnter .54s cubic-bezier(.21,.75,.2,1) both;
+  animation-delay:var(--reveal-delay,0ms);
+}
+@keyframes feedCardEnter{
+  from{opacity:0;transform:translate3d(0,15px,0) scale(.985)}
+  to{opacity:1;transform:translate3d(0,0,0) scale(1)}
+}
+@media(max-width:650px){
+  .highlight-track{--marquee-gap:16px;animation-duration:27s}
+  .highlight-marquee{-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 5%,#000 95%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0%,#000 5%,#000 95%,transparent 100%)}
+}
+@media(prefers-reduced-motion:reduce){
+  .highlight-marquee{overflow-x:auto;overscroll-behavior-inline:contain;-webkit-mask-image:none;mask-image:none;scrollbar-width:none}
+  .highlight-marquee::-webkit-scrollbar{display:none}
+  .highlight-track{animation:none!important;transform:none!important;will-change:auto}
+  .highlight-set[aria-hidden="true"]{display:none}
+  .post-card.motion-pending{opacity:1;transform:none;animation:none}
+  .post-card.motion-enter{animation:none!important}
+}
