@@ -144,6 +144,7 @@
 }
 .highlight-track{
   --marquee-gap:20px;
+  --marquee-half-gap:10px;
   display:flex;
   align-items:flex-start;
   gap:var(--marquee-gap);
@@ -170,7 +171,7 @@
 }
 @keyframes highlightSlide{
   from{transform:translate3d(0,0,0)}
-  to{transform:translate3d(calc(-50% - var(--marquee-gap) / 2),0,0)}
+  to{transform:translate3d(calc(-50% - var(--marquee-half-gap)),0,0)}
 }
 /* A small entrance happens when a card reaches the viewport, not before people scroll to it. */
 .post-card.motion-pending{
@@ -187,7 +188,7 @@
   to{opacity:1;transform:translate3d(0,0,0) scale(1)}
 }
 @media(max-width:650px){
-  .highlight-track{--marquee-gap:16px;animation-duration:27s}
+  .highlight-track{--marquee-gap:16px;--marquee-half-gap:8px;animation-duration:27s}
   .highlight-marquee{-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 5%,#000 95%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0%,#000 5%,#000 95%,transparent 100%)}
 }
 @media(prefers-reduced-motion:reduce){
