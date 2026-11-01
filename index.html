@@ -1,95 +1,44 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#0d121a" />
-  <script>try{document.documentElement.dataset.theme=localStorage.getItem("vy-theme")||"dark"}catch(e){document.documentElement.dataset.theme="dark"}</script>
-  <meta name="description" content="Victor Uzor's personal link hub — selected work, website archive, ventures, collaborations and creative services." />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Victor Uzor — Works & Links" />
-  <meta property="og:description" content="One home for the things I build and the places to find me." />
-  <title>Victor Uzor — Works & Links</title>
-  
-  <link rel="preload" href="https://raw.githubusercontent.com/victor-young-dev/victor-young-portfolio/main/public/portrait.png" as="image" type="image/webp" />
-  <link rel="stylesheet" href="/styles.css" />
-  <link rel="stylesheet" href="/v5.css" />
-  <script defer src="/config.js"></script>
-  <script defer src="/app.js"></script>
-  <script defer src="/v5.js"></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0c1626">
+<meta name="description" content="Victor Uzor (Victor Young). A visual index of my work, projects, collaborations and links.">
+<meta property="og:title" content="Victor Young — Works & Links"><meta property="og:description" content="Work archive · Projects · Creative experiments · Connect">
+<title>Victor Young — Works & Links</title>
+<link rel="icon" href="/assets/portrait.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css"><script>try{document.documentElement.dataset.theme=localStorage.getItem('vy-theme')||'dark'}catch(e){}</script>
+<script src="/config.js" defer></script><script src="/app.js" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <div class="page">
-    <header class="topbar">
-      <a class="wordmark" href="/" aria-label="Victor Uzor, home"><span class="mark">vu<span class="mark-accent">/</span></span><span class="mark-label">works & links</span></a>
-      <div class="topbar-tools">
-        <a class="top-text" href="https://github.com/victor-young-dev" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true">↗</span></a>
-        <button class="share-button" id="shareButton" type="button" aria-label="Share this website"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V3m0 0L8 7m4-4 4 4M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg><span>Share</span></button>
-      </div>
-    </header>
-
-    <main id="main">
-      <section class="hero fade-in" aria-labelledby="hero-title">
-        <div class="hero-topline"><span class="kicker">THE PERSONAL INDEX</span><span class="hero-available">Available for selected work</span></div>
-        <div class="hero-body">
-          <div class="hero-photo"><img id="portrait" src="https://raw.githubusercontent.com/victor-young-dev/victor-young-portfolio/main/public/portrait.png" alt="Portrait of Victor Uzor" width="116" height="116" /></div>
-          <div class="hero-words">
-            <p class="hero-name" id="publicName">Victor Young <span class="name-divider">/</span> Victor Uzor</p>
-            <h1 id="hero-title">Ideas become <em>things.</em><br />Here’s the work.</h1>
-            <p class="hero-description" id="heroDescription">Websites, products, brand ideas and practical digital solutions. Browse the work, find the right link, or reach out.</p>
-          </div>
-        </div>
-        <div class="hero-footer">
-          <div class="hero-identity">Creative technology · Product thinking · Digital execution</div>
-          <span class="hero-location">Based in Nigeria · Working beyond borders</span>
-        </div>
-      </section>
-
-      <section class="main-actions" aria-label="Quick actions">
-        <a class="main-action action-work" href="#featured"><span class="action-icon">↗</span><span><strong>See selected work</strong><small>My starting points</small></span></a>
-        <a class="main-action" href="https://raw.githubusercontent.com/victor-young-dev/victor-young-portfolio/main/public/cv.pdf" target="_blank" rel="noopener"><span class="action-icon">↧</span><span><strong>View my CV</strong><small>Profile & experience</small></span></a>
-        <a class="main-action" href="mailto:rayzorverse@gmail.com?subject=Working%20with%20Victor"><span class="action-icon">✉</span><span><strong>Work with me</strong><small>Projects & contracts</small></span></a>
-        <a class="main-action" href="https://rayzorverse.vercel.app/" target="_blank" rel="noopener noreferrer"><span class="action-icon">R</span><span><strong>RayzorVerse</strong><small>The venture ecosystem</small></span></a>
-      </section>
-
-      <section id="featured" class="section featured-section" aria-labelledby="featured-title">
-        <div class="section-heading"><div><span class="section-label">A GOOD PLACE TO START</span><h2 id="featured-title">The front shelf</h2></div><p>Real project previews where available; graceful fallbacks otherwise.</p></div>
-        <div class="featured-grid" id="featuredGrid">
-          <a class="featured-card" href="https://rayzorverse.vercel.app/"><span class="feature-placeholder">RayzorVerse</span></a>
-          <a class="featured-card" href="https://cosinebt.vercel.app/?welcome=1"><span class="feature-placeholder">Cosine Bus Tracker</span></a>
-          <a class="featured-card" href="https://brandi-lux.netlify.app/"><span class="feature-placeholder">BrandiLux</span></a>
-          <a class="featured-card" href="https://apex-wright-lab.vercel.app/"><span class="feature-placeholder">Apex Wright Lab</span></a>
-        </div>
-      </section>
-
-      <section id="archive" class="section archive-section" aria-labelledby="archive-title">
-        <div class="section-heading"><div><span class="section-label">THE FULL DIRECTORY</span><h2 id="archive-title">Everything in one place</h2></div><p>Older builds, prototypes and experiments included. Labels help you explore.</p></div>
-        <div class="archive-toolbar">
-          <label class="search-field"><svg viewBox="0 0 24 24" width="19" height="19" stroke="currentColor" fill="none" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.8"/><path d="m16 16 5 5"/></svg><span class="visually-hidden">Search work</span><input id="searchInput" type="search" placeholder="Find a project or brand" autocomplete="off" /></label>
-          <span class="archive-total" id="resultCount">Loading links...</span>
-        </div>
-        <div class="filters" id="categoryFilters" role="group" aria-label="Filter projects"><button class="filter active" type="button">All work</button></div>
-        <div class="archive-grid" id="archiveGrid"></div>
-        <div class="archive-empty" id="archiveEmpty" hidden><strong>Nothing matches that search.</strong><p>Try another term or select All work.</p><button id="resetFilters" type="button">Clear filters</button></div>
-        <div class="show-more-wrap"><button class="show-more" type="button" id="showMore" hidden>Show more projects <span aria-hidden="true">↓</span></button></div>
-      </section>
-
-      <section class="section connection-section" id="connect" aria-labelledby="connect-title">
-        <div class="section-heading"><div><span class="section-label">STAY CONNECTED</span><h2 id="connect-title">Find me across the internet</h2></div></div>
-        <div class="connect-grid">
-          <div class="personal-panel"><span class="connection-type">PERSONAL</span><h3>Talk to Victor.</h3><p>Opportunities, feedback, collaboration — my personal corners of the internet.</p><div class="personal-links" id="personalLinks"></div></div>
-          <div class="social-panel"><span class="connection-type">RAYZORVERSE</span><h3>Follow the studio.</h3><p>Project updates, brand work and what's happening across the ecosystem.</p><div class="studio-socials" id="studioSocials"></div></div>
-        </div>
-      </section>
-
-      <section class="section services-section" aria-labelledby="services-title"><div class="section-heading"><div><span class="section-label">WAYS I CAN HELP</span><h2 id="services-title">A few things I work on</h2></div></div><div class="skills" id="skills"></div><p class="services-footnote">For larger scopes, I can coordinate with independent collaborators after confirming their availability and fit.</p></section>
-
-      <section class="contact-end" aria-label="Contact and collaboration"><div><span class="contact-small">HAVE SOMETHING IN MIND?</span><h2>Make a move. <em>Say hello.</em></h2><p>A good idea starts with a conversation.</p></div><div class="contact-buttons"><a class="contact-primary" href="mailto:rayzorverse@gmail.com?subject=Hello%20Victor">Email Victor <span aria-hidden="true">↗</span></a><a class="contact-secondary" href="https://rayzorverse.vercel.app/" target="_blank" rel="noopener noreferrer">Explore RayzorVerse <span aria-hidden="true">↗</span></a></div></section>
-    </main>
-    <footer><span>© <span id="year">2026</span> Victor Uzor · Selected works, links & collaborations.</span><a href="#main">Back to top ↑</a></footer>
-  </div>
-  <div class="toast" id="toast" role="status" aria-live="polite" hidden>Link copied</div>
-  <noscript><div class="no-script">This archive uses JavaScript for filtering. <a href="https://github.com/victor-young-dev">Visit my GitHub</a> or <a href="mailto:rayzorverse@gmail.com">email me</a>.</div></noscript>
+<a class="skip" href="#work">Skip to works</a>
+<svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><symbol id="i-grid" viewBox="0 0 24 24"><rect x="2.5" y="2.5" width="7" height="7" rx="1"/><rect x="14.5" y="2.5" width="7" height="7" rx="1"/><rect x="2.5" y="14.5" width="7" height="7" rx="1"/><rect x="14.5" y="14.5" width="7" height="7" rx="1"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M10 7.8v8.4l7-4.2-7-4.2z"/></symbol><symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="2.5" y="7" width="19" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M2.5 13h19"/></symbol><symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.1 0l2-2a5 5 0 0 0-7.1-7.1l-1 1M14 11a5 5 0 0 0-7.1 0l-2 2A5 5 0 0 0 12 20.1l1-1"/></symbol><symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14a8 8 0 0 1-10-10 8 8 0 1 0 10 10Z"/></symbol><symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol><symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 19 19 5M8 5h11v11"/></symbol><symbol id="i-share" viewBox="0 0 24 24"><path d="M12 16V3m0 0L7.5 7.5M12 3l4.5 4.5M4 13v5a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-5"/></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></symbol></svg>
+<div class="site">
+ <header class="sitebar"><div class="sitebar-left"><span class="brand-mark">V<span>Y</span><small> /</small></span><span class="sitebar-name">victoryoung<span class="verified-dot" title="Personal works index — not a verification badge"></span></span><span class="sitebar-label">WORKS INDEX</span></div><div class="sitebar-tools"><button id="themeToggle" class="icon-btn" type="button" aria-label="Switch to light theme" title="Toggle theme"><svg class="icon"><use href="#i-sun"></use></svg></button><button id="shareButton" class="icon-btn" type="button" aria-label="Share this page" title="Share"><svg class="icon"><use href="#i-share"></use></svg></button></div></header>
+ <main>
+  <section class="profile" aria-label="Profile">
+   <div class="profile-header">
+    <div class="avatar-group"><span class="avatar-ring"><img class="avatar" src="/assets/portrait.svg" alt="Victor Uzor" width="120" height="120"></span><span class="avatar-label">VICTOR YOUNG</span></div>
+    <div class="profile-right"><div class="profile-heading"><div><h1>Victor Uzor</h1><p class="handle">@victoryoung <span aria-hidden="true">·</span> Founder, RayzorVerse</p></div><span class="open-tag"><span></span> Open to projects</span></div>
+    <div class="profile-facts" aria-label="Archive details"><div><strong id="projectCount">21</strong><span>project links</span></div><div><strong>4</strong><span>collections</span></div><div><strong>2</strong><span>contact paths</span></div></div></div>
+   </div>
+   <div class="bio"><p class="bio-first">Creative technologist <span>·</span> Ideas & practical digital work</p><p>I turn ideas into websites, visual stories and useful digital experiences. This is the place to explore the work and find me online.</p><a class="bio-link" href="https://rayzorverse.vercel.app/" target="_blank" rel="noopener noreferrer">rayzorverse.vercel.app <svg class="icon"><use href="#i-arrow"></use></svg></a></div>
+   <div class="profile-actions"><a class="btn btn-primary" href="mailto:rayzorverse@gmail.com?subject=Work%20with%20Victor">Work with me</a><a class="btn btn-secondary" href="https://raw.githubusercontent.com/victor-young-dev/victor-young-portfolio/main/public/cv.pdf" target="_blank" rel="noopener noreferrer">View CV</a><a class="btn btn-secondary" href="mailto:rayzorverse@gmail.com?subject=RayzorVerse%20Collaboration">Collaborate</a></div>
+  </section>
+  <section class="highlights" aria-label="Social media highlights"><div class="section-overline"><span>ON THE INTERNET</span><span>Tap to visit <svg class="icon"><use href="#i-arrow"></use></svg></span></div><div id="highlights" class="highlight-track"></div></section>
+  <section id="work" class="feed-section"><div class="feed-top"><div class="feed-intro"><strong>My work, in one place.</strong><span>Browse the gallery. Open any project for details.</span></div><button id="searchToggle" class="search-toggle" type="button" aria-label="Search projects" aria-expanded="false"><svg class="icon"><use href="#i-search"></use></svg></button></div>
+   <div id="searchRegion" class="search-region" hidden><label for="searchInput">Search my work</label><input id="searchInput" type="search" placeholder="Try Kaabo, BrandiLux, Vendra…" autocomplete="off"></div>
+   <div class="feed-tabs" role="tablist" aria-label="Browse collections"><button class="tab active" id="tab-all" role="tab" data-tab="all" aria-selected="true"><svg class="icon"><use href="#i-grid"></use></svg><span>Works</span></button><button class="tab" id="tab-products" role="tab" data-tab="products" aria-selected="false"><svg class="icon"><use href="#i-play"></use></svg><span>Products</span></button><button class="tab" id="tab-brands" role="tab" data-tab="brands" aria-selected="false"><svg class="icon"><use href="#i-briefcase"></use></svg><span>Brands</span></button><button class="tab" id="tab-connect" role="tab" data-tab="connect" aria-selected="false"><svg class="icon"><use href="#i-link"></use></svg><span>Connect</span></button></div>
+   <div id="tabPanel" role="tabpanel" aria-labelledby="tab-all"><div class="feed-status"><span id="feedLabel">Works & projects</span><span id="feedCount">21 destinations</span></div><div class="work-grid" id="workGrid"></div><div class="empty-state" id="emptyState" hidden>No projects match your search.</div><button class="load-more" type="button" id="loadMore" hidden>View more projects <span aria-hidden="true">↓</span></button></div>
+   <div class="connect-panel" id="connectPanel" hidden><div class="connect-card"><span class="connect-kicker">PERSONAL</span><h2>Find me as Victor.</h2><p>Explore personal work, reach out or follow along.</p><div class="connect-links" id="personalLinks"></div></div><div class="connect-card"><span class="connect-kicker">RAYZORVERSE</span><h2>Find the studio.</h2><p>Brand work, experiments and venture updates.</p><div class="connect-links" id="studioLinks"></div></div></div>
+  </section>
+  <section class="contact-strip"><div><span class="contact-kicker">START A CONVERSATION</span><h2>Have an idea worth building?</h2><p>We can shape it into something useful.</p></div><a href="mailto:rayzorverse@gmail.com?subject=New%20Project%20Enquiry" class="contact-button">Get in touch <svg class="icon"><use href="#i-arrow"></use></svg></a></section>
+ </main>
+ <footer><span>© <span id="year"></span> Victor Uzor</span><span>Built with intention. <a href="#work">Back to works ↑</a></span></footer>
+</div>
+<div class="modal" id="detailModal" aria-hidden="true" hidden><div class="modal-scrim" data-close="true"></div><div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button type="button" id="modalClose" class="modal-close" aria-label="Close project details">×</button><div id="modalVisual" class="modal-visual"></div><div class="modal-content"><span id="modalTag" class="modal-tag"></span><h2 id="modalTitle"></h2><p id="modalDescription"></p><p id="modalNote" class="modal-note"></p><a id="modalVisit" class="modal-visit" target="_blank" rel="noopener noreferrer">Visit project <svg class="icon"><use href="#i-arrow"></use></svg></a></div></div></div>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden>Link copied</div>
 </body>
 </html>
