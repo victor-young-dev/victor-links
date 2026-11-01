@@ -31,3 +31,16 @@ Mobile view 360/390/430px; desktop 1024/1440; both themes; image loads; scroll a
 - **Recovered Work feedback partially implemented:** LinkedIn → GitHub → Instagram → YouTube → X → TikTok → Facebook story order; portrait opens accessible personal information gallery; stronger and accessible highlight rings; compact three-column grid on phones.
 - **Pending design acceptance:** the original two Work screenshots were not accessible through this session. The exact component intended to receive continuous **vertical** top-to-bottom marquee movement has not been positively identified, so no unrelated navigation was turned into an auto-moving target. Also recheck site cover thumbnails, photo and CV links, light theme and responsive layouts on the owner's phone.
 - **Previous deployment URLs:** Vercel can retain immutable historical/preview URLs. They do not alter which release is served by the canonical production alias.
+
+
+## Batch 2 — motion and highlight behavior
+
+Implemented on `main` after the owner approved Batch 1:
+
+- Original social order preserved: LinkedIn → Instagram → TikTok → Facebook → X → YouTube → GitHub.
+- Automatic continuous horizontal highlight motion with a matched visual copy for seamless looping. The duplicate group has `aria-hidden=true` and unfocusable links, so keyboard/screen-reader users don't encounter duplicates.
+- Pause on pointer hover, active press and keyboard focus within the highlight area; no navigation arrows.
+- For `prefers-reduced-motion: reduce`, the animation stops and the original highlight row remains horizontally scrollable without the duplicate.
+- Post reveal animation triggers when gallery cards enter the viewport. It does not change card content, pin sorting, theme, or project URLs.
+- Main production URLs stay https://victorlinkbio.vercel.app/ and https://victor-links.vercel.app/.
+- **QA:** GitHub syntax/content checks and Vercel READY for same branch and revision. Owner phone review is required for animation speed, pause behavior and smoothness. **Batch 3** (curated post artwork and later unlisted YouTube videos) is not started.
