@@ -344,3 +344,61 @@
  .btn-primary,.contact-button,.modal-visit,.post-image{transition:none!important}
  .btn-primary:hover,.contact-button:hover,.modal-visit:hover{transform:none}
 }
+
+/* Founder feedback — full-width header, CTAs, availability and contact methods */
+/* Keep the original content width; allow only the header backdrop and its shadow to stretch to both viewport edges. */
+.sitebar{isolation:isolate;background:transparent!important;border-bottom:0!important;box-shadow:none!important}
+.sitebar::before{
+ content:"";position:absolute;top:0;bottom:0;left:50%;width:100vw;transform:translateX(-50%);z-index:-1;
+ background:color-mix(in srgb,var(--bg) 91%,transparent);
+ border-bottom:1px solid color-mix(in srgb,var(--gold) 21%,var(--border));
+ box-shadow:0 11px 29px rgba(4,12,24,.16),inset 0 -1px 0 rgba(255,255,255,.06);
+ -webkit-backdrop-filter:blur(20px) saturate(125%);
+ backdrop-filter:blur(20px) saturate(125%);
+ pointer-events:none;
+}
+:root[data-theme='light'] .sitebar::before{box-shadow:0 9px 25px rgba(20,27,37,.12),inset 0 -1px 0 rgba(255,255,255,.40)}
+.profile-actions .contact-choice{position:relative;min-width:0;display:block}
+.profile-actions .contact-choice>.btn{width:100%}
+.btn-secondary{box-shadow:0 7px 17px rgba(12,24,38,.12),0 2px 4px rgba(12,24,38,.06),inset 0 1px 0 rgba(255,255,255,.18);border:1px solid color-mix(in srgb,var(--gold) 18%,var(--border));transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.btn-secondary:hover,.btn-secondary:focus-visible{transform:translateY(-2px);border-color:color-mix(in srgb,var(--gold) 40%,var(--border));box-shadow:0 15px 30px rgba(12,24,38,.18),0 4px 8px rgba(12,24,38,.08),inset 0 1px 0 rgba(255,255,255,.25)}
+.btn-secondary:active{transform:translateY(0);box-shadow:0 3px 9px rgba(12,24,38,.11)}
+/* Available-status dot goes at the END of the text, and animates clearly without becoming distracting. */
+.open-tag{gap:12px;justify-content:space-between;letter-spacing:.01em;padding:9px 13px;isolation:isolate}
+.open-tag::before{display:none!important;content:none!important}
+.open-status-dot{display:block;position:relative;flex:none;width:9px;height:9px;border-radius:50%;background:#55c18f;box-shadow:0 0 0 1px rgba(23,91,65,.22),0 0 6px rgba(52,179,118,.25)}
+.open-status-dot::before,.open-status-dot::after{content:"";position:absolute;inset:-5px;border-radius:inherit;border:1.5px solid rgba(55,188,123,.78);animation:projectPulse 2.8s cubic-bezier(.12,.7,.4,1) infinite;pointer-events:none}
+.open-status-dot::after{animation-delay:1.4s}
+@keyframes projectPulse{0%{transform:scale(.55);opacity:.78}75%,100%{transform:scale(1.65);opacity:0}}
+/* Inline contact-choice popovers remain within the current simple link hub, no new route needed. */
+.contact-choice{position:relative}
+.contact-choice--footer{flex:none}
+.contact-choice--footer>.contact-button{min-width:156px;min-height:44px;cursor:pointer}
+.contact-menu{
+ position:absolute;left:0;right:0;top:calc(100% + 8px);min-width:min(255px,86vw);z-index:19;
+ background:var(--surface);border:1px solid color-mix(in srgb,var(--gold) 26%,var(--border));
+ border-radius:13px;padding:7px;box-shadow:0 19px 46px rgba(5,13,25,.25);
+ -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+}
+.contact-choice--footer .contact-menu{top:auto;bottom:calc(100% + 10px);left:auto;right:0}
+.contact-menu[hidden]{display:none!important}
+.contact-menu a{display:flex;flex-direction:column;gap:2px;padding:11px 13px;border-radius:8px;color:var(--ink);font-size:13px;font-weight:750;background:transparent;transition:background .18s}
+.contact-menu a:hover,.contact-menu a:focus-visible{background:var(--surface2)}
+.contact-menu a+a{border-top:1px solid var(--border)}
+.contact-menu-detail{font-size:11px;color:var(--secondary);font-weight:500}
+.modal-visual img{object-position:var(--detail-position,center center)}
+.connect-panel{gap:16px;align-items:stretch}
+.connect-card{padding:clamp(20px,3.2vw,30px);border-radius:16px;box-shadow:0 14px 33px rgba(12,24,39,.10),inset 0 1px 0 rgba(255,255,255,.12)}
+.connect-card h2{font-family:var(--font-display);font-size:clamp(19px,2.3vw,26px);line-height:1.15;letter-spacing:-.025em}
+.connect-card p{max-width:33ch;line-height:1.5}
+.connect-links{gap:8px}
+.connect-links a{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:10px 14px;box-shadow:0 3px 10px rgba(9,20,36,.055);transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+.connect-links a:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--gold) 35%,var(--border));box-shadow:0 9px 17px rgba(9,20,36,.10)}
+@media(max-width:650px){
+ .contact-menu{left:auto;right:0;min-width:min(248px,83vw)}
+ .profile-actions>.contact-choice:first-child .contact-menu{left:0;right:auto}
+ .connect-panel{grid-template-columns:1fr;gap:12px}
+ .connect-card{padding:22px;border-radius:14px}
+ .connect-links a{padding:11px 13px;font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){.open-status-dot::before,.open-status-dot::after{animation:none;display:none}.btn-secondary:hover,.btn-secondary:focus-visible,.connect-links a:hover{transform:none}}

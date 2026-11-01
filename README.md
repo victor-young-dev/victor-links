@@ -78,3 +78,14 @@ The owner reviewed the first artwork rollout and approved a second image-directi
 - Replaced HexaGuild main and Haverhills fallback visuals with original editorial SVGs, not representations of real product screens. Apex Wright Lab awaits user-supplied replacement art.
 - Updated dim gold gradient accents, navbar edge/shadow, contact CTAs, Open to projects badge, and removed decorative external-pointing arrow glyphs.
 - Home/gallery expansion and YouTube Shorts remain separate proposals, not implemented.
+
+## November 2026 mobile feedback — UI and contact refinements
+- Expanded the sticky header shadow/backdrop to the viewport edges without changing the content grid width.
+- Added a subtle raised appearance to View CV and Collaborate alongside the existing primary Work with me button.
+- Moved the active availability indicator after the Open to projects text, added animated pulse rings, and respects reduced-motion settings.
+- Replaced the general-purpose bio with grounded founder language about expanding ideas into plans, creative work, and practical solutions with collaborators.
+- Added contact-choice popovers to Work with me, Collaborate, and Get in touch. WhatsApp prefills depend on the originating action and use the user-supplied number; email links have matching subjects and messages.
+- Improved spacing and hierarchy in Connect panel, while preserving the founder/studio split.
+- Added Blessing C as a website project; website thumbnail capture is attempted through thum.io and a local editorial SVG is used as fallback. Direct screenshot could not be verified by the browser environment.
+- Changed the Stallbasket detail view to use its matching curated promotional cover. Adjusted Browndilux popup image alignment to favour the laptop area.
+- Apex Wright Lab's replacement uploaded image is pending an actual binary asset upload, not merely a path reference.
