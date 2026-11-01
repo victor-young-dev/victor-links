@@ -1,46 +1,22 @@
-# Victor Uzor — My Works & Links
+# Victor Young — Works & Links · v6 design reset
 
-**Purpose:** a phone-first link-in-bio directory of public projects, selected collaborations, social accounts and ways to contact Victor. It is not another full portfolio website.
+**Status:** founder review candidate. A compact social-profile-inspired works directory, not another full portfolio website.
 
-## Live website
+## Rationale and design system
 
-https://victor-links.vercel.app/
+- Uses the useful Instagram profile pattern — identity, actions, social highlights, tabs, portrait-oriented project grid — but original styling and authentic actions. It is not an Instagram affiliation or clone.
+- Colors: midnight navy #0a111c, ivory #f8f7f3, warm gold #c8a055, restrained warm red #bb3f3f; never purple as a brand color.
+- Display: Syne (web fallback), body: DM Sans, metadata: Space Mono. One deliberate typographic system, not multiple decorative scripts.
+- Content: 21 links provided by owner or from the existing collaboration, categorized into Works, Products, Brands, Connect. No fabricated likes, follower counts, live statuses or testimonials.
+- Profile photo is a self-hosted text SVG wrapper containing a compressed copy of the supplied portrait. It doesn't require a third-party host. CV currently points to verified existing portfolio repo PDF, not self-hosted in this repository.
+- Project imagery: genuine repo screenshot where available (RayzorVerse, Kaabo); original portfolio covers identified as covers; optional third-party screenshot service for the other sites, with distinct authored fallbacks (never represented as screenshots).
+- Interactions: theme switch with local preference, horizontal social highlights, grid tabs, search, detail modal with direct external link, keyboard tab arrows / ESC, touch-friendly targets, reduced-motion support.
+- Sanity Studio schema remains in /studio as a placeholder; public site data is currently in /app.js, and the CMS has not been connected.
 
-GitHub source: https://github.com/victor-young-dev/victor-links
+## Design evidence / limitations
 
-Vercel project: `victor-links`, linked to the GitHub `main` branch for automatic deployments.
+Consulted RayzorVerse Knowledge Base: Creative Quality Audit & Anti-Generic Design Standards v0.1, Portfolio Project Intelligence Architecture, and My Works Audit. Referenced Instagram profile layout behavior and Milkshake/Linktree creator hubs. Site visuals from live hosted projects could not be comprehensively fetched in this environment; external thumbnail service and remote images remain subject to reliability and privacy considerations. Check images and links on the user's phone.
 
-## Creative direction — 1 November 2026
+## Testing checklist
 
-Designed around the founder's existing Creative Quality / Anti-Generic Design Standards in the RayzorVerse Knowledge Base. Warm light canvas, restrained cobalt accent, editorial headline hierarchy, distinct typographic **project-cover artwork** (not false website screenshots), compact archive tiles, consistent spacing, and minimal purposeful transitions. No excessive gradients, meaningless decoration, fake metrics or testimonials.
-
-## Content and interactions
-
-- Four featured links: RayzorVerse, **Cosine Bus Tracker (collaboration)**, BrandiLux and Apex Wright Lab.
-- Search, category filtering, show-more disclosure and empty search state.
-- Full register of 20 user-supplied project destinations (November 2026) plus Cosine Bus Tracker.
-- Separate personal profiles and RayzorVerse social profiles.
-- Distinct direct-work and studio routes.
-- Keyboard-friendly controls, focus styles and `prefers-reduced-motion` handling.
-
-Public links were supplied by the owner. **They are not all independently verified to load, and a listed URL does not establish the finished state of its project.** Status tags describe prototypes, pitches, samples and earlier work. Review every destination before treating this hub as final evidence of project delivery.
-
-## Files and changes
-
-- `index.html`: structure and accessible content
-- `styles.css`: layout, responsive treatment and micro-interactions
-- `app.js`: link register, categories, search, show more, share and optional CMS fetch
-- `config.js`: public CMS settings (project ID intentionally blank)
-- `studio/`: separate Sanity Studio starter, **not yet linked to an active Sanity project**
-
-The current public portrait and CV links are served from the author's existing `victor-young-portfolio` repository. A downloadable source package includes optimized copies for eventual self-hosting. Confirm the CV is up-to-date before professional use.
-
-## Sanity headless CMS — pending
-
-A Sanity project, public-only dataset, approved Studio editors and site-origin CORS must be configured separately. This site's frontend will use CMS content when a public `linkHub` document is available; otherwise it falls back to the bundled register. **Do not claim CMS editing is live before end-to-end testing.** Do not put tokens or private project/contact data into `config.js`.
-
-## Release and QA
-
-The production deployment and source syntax were checked on November 1, 2026. Full browser visual QA and verification of every external project URL have not yet been completed from this environment. Check Android width 360–430px, wider desktop, photo/CV loading, filters, content status, external links, tap targets, keyboard focus and reduced motion.
-
-See also: [RayzorVerse Knowledge Base](https://github.com/victor-young-dev/RayzorVerse-Knowledge-Base).
+Mobile view 360/390/430px; desktop 1024/1440; both themes; image loads; scroll and horizontal overflow; post modal open/close; keyboard focus; search; category tabs; copy/share; CV; real outbound links; prefers-reduced-motion. Before treating a page as approved/production case-study: confirm contributor rights and prototype/demo descriptions.
