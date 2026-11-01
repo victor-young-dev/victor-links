@@ -44,3 +44,15 @@ Implemented on `main` after the owner approved Batch 1:
 - Post reveal animation triggers when gallery cards enter the viewport. It does not change card content, pin sorting, theme, or project URLs.
 - Main production URLs stay https://victorlinkbio.vercel.app/ and https://victor-links.vercel.app/.
 - **QA:** GitHub syntax/content checks and Vercel READY for same branch and revision. Owner phone review is required for animation speed, pause behavior and smoothness. **Batch 3** (curated post artwork and later unlisted YouTube videos) is not started.
+
+
+## Batch 3 — differentiated project covers
+
+Initial curated batch deployed on `main`: **9** individual editorial SVG cover illustrations in `assets/covers/`. Each piece uses a project-specific visual concept (architecture, workstation, stationery, editorial research, marketplace mobile UI, commerce packaging, bus transport, community network, fashion). This replaces repetitive abstract visuals on the first nine posts, including the three pinned posts.
+
+- These covers are **illustrations**, not actual UI screenshots, logos, real company properties, or photographs. They should never be cited as proof that specific features or client identities exist.
+- `app.js` uses a `cover` field for the visible social-feed tile, while preserving each project's existing `image` field for the details dialog (where available).
+- Current live projects, URLs, status tags, three pinned items, social order, Batch 1 dark-mode contrast and Batch 2 animations were left intact.
+- Remaining **12** entries retain their existing thumbnail sources; no mass replacement was performed.
+- Quality gate: checked expected cover paths on `main`, SVG element balancing, JavaScript syntax and READY Vercel production deployment. Manual visual inspection on phone is still required.
+- Later: selectively replace approved illustrations with verified project photographs or true screenshots, and add the user's three unlisted videos only after supplying the actual links and confirming embed permissions.
