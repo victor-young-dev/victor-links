@@ -402,3 +402,6 @@
  .connect-links a{padding:11px 13px;font-size:12px}
 }
 @media(prefers-reduced-motion:reduce){.open-status-dot::before,.open-status-dot::after{animation:none;display:none}.btn-secondary:hover,.btn-secondary:focus-visible,.connect-links a:hover{transform:none}}
+
+/* 2026-11-02: photo positioning only, preserves approved circular frame. */
+.avatar,.gallery-media img{object-position:center 38%}
